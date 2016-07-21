@@ -1,0 +1,24 @@
+{
+  "passPerPreset": true,
+  "presets": [
+    {
+      "plugins": [
+        "syntax-flow",
+        "transform-flow-strip-types",
+        "syntax-async-functions",
+        "transform-async-to-generator",
+        "transform-es2015-destructuring",
+        "transform-es2015-modules-commonjs",
+        [ "module-alias", [
+          { "src": "./server/components", "expose": "components" },
+          { "src": "./server/controllers", "expose": "controllers" },
+          { "src": "./server/entities", "expose": "entities" },
+          { "src": "./server/facades", "expose": "facades" },
+          { "src": "./server/handlers", "expose": "handlers" },
+          { "src": "./server/helpers", "expose": "helpers" },
+          { "src": "./server/middlewares", "expose": "middlewares" }
+        ]]
+      ]
+    }
+  ]
+}

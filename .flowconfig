@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/.*[^e]\.json$
+.*/node_modules/.*\(lib\|test\).*\.json$
+
+[libs]
+interfaces/
+
+[include]
+server/
+
+[options]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=server
