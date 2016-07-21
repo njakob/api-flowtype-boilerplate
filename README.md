@@ -40,7 +40,7 @@ $ curl \
 same scope of their usage.
 * Extra fields in the Koa context must be added to the
 `Koa$Context$Impl` in [`interfaces/koa.flow.js`](interfaces/koa.flow.js)
-since Flowtype declaration cannot be extended (facebook/flow#396).
+since Flowtype declaration cannot be extended [facebook/flow#396](https://github.com/facebook/flow/issues/396).
 
 ## Licences
 
