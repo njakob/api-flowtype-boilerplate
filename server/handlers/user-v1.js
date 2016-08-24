@@ -1,15 +1,15 @@
 // @flow
 
-import { AggregateError } from 'helpers/promise';
+import * as promiseHelper from 'helpers/promise';
 import * as mongodbHelper from 'helpers/mongodb';
 
 import Server from 'components/server';
 
-import UserEntity from 'entities/user';
+import type { UserEntity } from 'entities/user';
 
 ///////////////////
 
-class UserV1 {
+export default class UserV1 {
   server: Server;
 
   constructor(server: Server) {
@@ -17,18 +17,18 @@ class UserV1 {
   }
 
   async createUser(ctx: Koa$Context$Impl, next: Function): Promise<*> {
-    const user = new UserEntity({
+    let user: UserEntity = {
       name: ctx.request.body['name'],
       email: ctx.request.body['email'],
       personalUrl: ctx.request.body['personal_url']
-    });
+    };
     if (user.name == null) {
       throw new Error('missing name field');
     }
     if (user.email == null) {
       throw new Error('missing email field');
     }
-    await this.server.user.create(user);
+    user = await this.server.user.create(user);
     ctx.status = 201;
     ctx.result = {
       'user_id': user.userId,
@@ -55,8 +55,8 @@ class UserV1 {
     if (ctx.params.users == null) {
       throw new Error('missing users parameter');
     }
-    const users = ctx.params.users.split(',').map((str) => {
-      return new UserEntity({ userId: new mongodbHelper.ObjectId(str) })
+    const users: UserEntity[] = ctx.params.users.split(',').map((str) => {
+      return { userId: new mongodbHelper.ObjectId(str) };
     });
     if (!users.length) {
       throw new Error('no user id provided');
@@ -73,7 +73,7 @@ class UserV1 {
     } else {
       const inspections = await this.server.user.retrieveBatch(users);
       ctx.status = 200;
-      const errors = new AggregateError();
+      const errors = new promiseHelper.AggregateError();
       const result = ctx.result = [];
       for (let inspection of inspections) {
         if (inspection.isRejected()) {
@@ -96,7 +96,3 @@ class UserV1 {
   }
 
 }
-
-///////////////////
-
-export default UserV1;

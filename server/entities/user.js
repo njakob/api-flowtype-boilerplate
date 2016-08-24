@@ -1,31 +1,21 @@
 // @flow
 
-import * as mongodbHelper from 'helpers/mongodb';
+import type { ObjectId } from 'helpers/mongodb';
 
 ///////////////////
 
-class UserEntity {
-  userId: ?mongodbHelper.ObjectId;
-  createdAt: ?Date;
-  name: ?string;
-  email: ?string;
-  personalUrl: ?string;
+export const MONGO_COLLECTION = 'users';
 
-  constructor (options?: {
-    userId?: mongodbHelper.ObjectId,
-    name?: string,
-    email?: string,
-    personalUrl?: string
-  }): void {
-    if (options) {
-      this.userId = options.userId;
-      this.name = options.name;
-      this.email = options.email;
-      this.personalUrl = options.personalUrl;
-    }
-  }
+export const MONGO_FIELD_ID = '_id';
+export const MONGO_FIELD_CREATED_AT = 'created_at';
+export const MONGO_FIELD_NAME = 'name';
+export const MONGO_FIELD_EMAIL = 'email';
+export const MONGO_FIELD_PERSONAL_URL = 'personal_url';
+
+export type UserEntity = {
+  userId?: ObjectId;
+  createdAt?: Date;
+  name?: string;
+  email?: string;
+  personalUrl?: string;
 }
-
-///////////////////
-
-export default UserEntity;
