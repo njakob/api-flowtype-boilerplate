@@ -3,12 +3,16 @@
 
 API boilerplate with [Flowtype](https://flowtype.org).
 
+Boilerplate to build a simple API based on Node.js that use
+Flowtype as static type analyser.
+
 ## Features
 
 * Flowtype support
-* Babel setup for ES7/Flowtype
+* Babel setup for ES7/Flowtype to target Node 5.0 in `--harmony`
 * Simple MongoDB integration without ORM
 * Request resolution with aggregated errors
+* Async/await functions
 
 ## Installation
 
@@ -36,8 +40,6 @@ $ curl \
 
 ## Known Issues
 
-* Every [nullable](https://flowtype.org/docs/nullable-types.html) fields of an object must checked within the
-same scope of their usage.
 * Extra fields in the Koa context must be added to the
 `Koa$Context$Impl` in [`interfaces/koa.flow.js`](interfaces/koa.flow.js)
 since Flowtype declaration cannot be extended [facebook/flow#396](https://github.com/facebook/flow/issues/396).
