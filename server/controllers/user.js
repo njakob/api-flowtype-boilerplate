@@ -1,7 +1,5 @@
 // @flow
 
-'use strict';
-
 import { PromiseInspection } from 'helpers/promise';
 
 import Server from 'components/server';

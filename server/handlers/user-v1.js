@@ -1,7 +1,5 @@
 // @flow
 
-'use strict';
-
 import { AggregateError } from 'helpers/promise';
 import * as mongodbHelper from 'helpers/mongodb';
 

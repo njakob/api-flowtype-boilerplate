@@ -1,7 +1,5 @@
 // @flow
 
-'use strict';
-
 import * as mongodbHelper from 'helpers/mongodb';
 
 ///////////////////

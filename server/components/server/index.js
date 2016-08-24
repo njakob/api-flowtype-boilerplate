@@ -1,7 +1,5 @@
 // @flow
 
-'use strict';
-
 import Koa from 'koa';
 import KoaRouter from 'koa-router';
 import koaBodyParser from 'koa-bodyparser';
