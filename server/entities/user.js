@@ -2,19 +2,19 @@
 
 'use strict';
 
-import * as mongodb from 'facades/mongodb';
+import * as mongodbHelper from 'helpers/mongodb';
 
 ///////////////////
 
 class UserEntity {
-  userId: ?mongodb.ObjectId;
+  userId: ?mongodbHelper.ObjectId;
   createdAt: ?Date;
   name: ?string;
   email: ?string;
   personalUrl: ?string;
 
   constructor (options?: {
-    userId?: mongodb.ObjectId,
+    userId?: mongodbHelper.ObjectId,
     name?: string,
     email?: string,
     personalUrl?: string

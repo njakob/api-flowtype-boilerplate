@@ -9,7 +9,7 @@ import koaFormatter from 'koa-formatter';
 import koaMount from 'koa-mount';
 import dotenv from 'dotenv';
 
-import * as mongodb from 'facades/mongodb';
+import * as mongodbHelper from 'helpers/mongodb';
 
 import UserV1 from 'handlers/user-v1';
 
@@ -49,7 +49,7 @@ class Server {
   }
 
   async _createMongoClient(): Promise<*> {
-    this.db = await mongodb.Client.connect(this.mongoUrl);
+    this.db = await mongodbHelper.Client.connect(this.mongoUrl);
   }
 
   _createApi(): void {

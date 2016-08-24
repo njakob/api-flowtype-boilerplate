@@ -3,8 +3,7 @@
 'use strict';
 
 import { AggregateError } from 'helpers/promise';
-
-import * as mongodb from 'facades/mongodb';
+import * as mongodbHelper from 'helpers/mongodb';
 
 import Server from 'components/server';
 
@@ -59,7 +58,7 @@ class UserV1 {
       throw new Error('missing users parameter');
     }
     const users = ctx.params.users.split(',').map((str) => {
-      return new UserEntity({ userId: new mongodb.ObjectId(str) })
+      return new UserEntity({ userId: new mongodbHelper.ObjectId(str) })
     });
     if (!users.length) {
       throw new Error('no user id provided');
