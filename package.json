@@ -30,18 +30,20 @@
     "start": "node --harmony ./bin/www.js",
     "clean": "rimraf ./build",
     "flow": "flow",
-    "babel": "babel --watch=./server --out-dir=./build"
+    "babel": "babel  --source-maps --watch=./server --out-dir=./build"
   },
   "dependencies": {
+    "bugsy": "0.1.0",
     "debug": "2.2.0",
     "dotenv": "2.0.0",
     "koa": "2.0.0",
     "koa-bodyparser": "3.1.0",
-    "koa-formatter": "0.0.3",
+    "koa-formatter": "0.1.0",
     "koa-mount": "2.0.0",
     "koa-router": "7.0.0",
     "mime-types": "2.1.11",
-    "mongodb": "2.1.18"
+    "mongodb": "2.1.18",
+    "source-map-support": "0.4.2"
   },
   "devDependencies": {
     "babel-plugin-module-alias": "1.5.0",
@@ -50,6 +52,7 @@
     "babel-plugin-transform-async-to-generator": "6.8.0",
     "babel-plugin-transform-es2015-destructuring": "6.9.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.10.3",
+    "babel-plugin-transform-export-extensions": "6.8.0",
     "babel-plugin-transform-flow-strip-types": "6.8.0",
     "babel-plugin-transform-object-rest-spread": "6.8.0",
     "flow-bin": "0.29.0",

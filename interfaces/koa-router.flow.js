@@ -1,27 +1,27 @@
 // @flow
 
-type KoaRouter$Options = {
+type koaRouter$Options = {
   prefix?: string
 };
 
-declare class KoaRouter$Router {
-  constructor(options?: KoaRouter$Options): void;
-  all(name: string, route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  all(route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  delete(name: string, route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  delete(route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  get(name: string, route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  get(route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  patch(name: string, route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  patch(route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  post(name: string, route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  post(route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
+declare class koaRouter$Router {
+  constructor(options?: koaRouter$Options): void;
+  all(name: string, route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  all(route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  delete(name: string, route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  delete(route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  get(name: string, route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  get(route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  patch(name: string, route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  patch(route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  post(name: string, route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  post(route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
   prefix(prefix: string): this;
-  put(name: string, route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
-  put(route: string, handler: (ctx: Koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  put(name: string, route: string, handler: (ctx: koa$Context$Impl, next: Function) => ?Promise<*>): this;
+  put(route: string, handler: (ctx: koa$Context, next: Function) => ?Promise<*>): this;
   routes(): Function;
-  use(...middlewares: ((ctx: Koa$Context$Impl, next: Function) => ?Promise<*>)[]): this;
-  use(path: string|string[], ...middlewares: ((ctx: Koa$Context$Impl, next: Function) => ?Promise<*>)[]): this;
+  use(...middlewares: ((ctx: koa$Context$Impl, next: Function) => ?Promise<*>)[]): this;
+  use(path: string|string[], ...middlewares: ((ctx: koa$Context$Impl, next: Function) => ?Promise<*>)[]): this;
   allowedMethods(options?: {
     throw?: boolean,
     notImplemented?: Function,
@@ -35,5 +35,5 @@ declare class KoaRouter$Router {
 }
 
 declare module 'koa-router' {
-  declare var exports: Class<KoaRouter$Router>;
+  declare var exports: Class<koaRouter$Router>;
 }

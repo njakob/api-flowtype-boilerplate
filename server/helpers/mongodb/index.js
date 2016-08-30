@@ -1,8 +1,8 @@
 // @flow
 
-import * as mongodb from 'mongodb';
+import { ObjectId, MongoClient } from 'mongodb';
 
 ///////////////////
 
-export const Client = mongodb.MongoClient;
-export const ObjectId = mongodb.ObjectId;
+export { ObjectId };
+export { MongoClient as Client };

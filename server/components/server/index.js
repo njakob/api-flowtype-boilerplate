@@ -9,17 +9,22 @@ import dotenv from 'dotenv';
 
 import * as mongodbHelper from 'helpers/mongodb';
 
-import UserV1 from 'handlers/user-v1';
+import * as v1Handlers from 'handlers/v1';
 
-import UserController from 'controllers/user';
+import * as userControllers from 'controllers/user';
 
 ///////////////////
 
-class Server {
+export class Server {
   koa: Koa;
   db: MongoDb$Db;
 
-  user: UserController;
+  user: {
+    create: *;
+    retrieve: *;
+    retrieveAll: *;
+    retrieveBatch: *;
+  };
 
   mongoUrl: string;
   port: number;
@@ -29,7 +34,12 @@ class Server {
     this.mongoUrl = this._loadEnvironment('MONGO_URL');
     this.port = parseInt(this._loadEnvironment('PORT'));
     this.koa = new Koa();
-    this.user = new UserController(this);
+    this.user = {
+      create: userControllers.create(this),
+      retrieve: userControllers.retrieve(this),
+      retrieveAll: userControllers.retrieveAll(this),
+      retrieveBatch: userControllers.retrieveBatch(this)
+    };
   }
 
   _loadEnvironment(key: string): string {
@@ -51,24 +61,16 @@ class Server {
   }
 
   _createApi(): void {
-    const userV1 = new UserV1(this);
     const router = new KoaRouter();
-    router.get('/users', userV1.retrieveAllUser.bind(userV1));
-    router.post('/users', userV1.createUser.bind(userV1));
-    router.get('/users/:users', userV1.retrieveUserBatch.bind(userV1));
+    router.get('/users', v1Handlers.user.retrieveAll(this));
+    router.post('/users', v1Handlers.user.create(this));
+    router.get('/users/:users', v1Handlers.user.retrieveBatch(this));
     const koa = new Koa();
     koa.use(koaBodyParser());
-    koa.use(koaFormatter());
+    koa.use(koaFormatter({ formatter: v1Handlers.createFormatter() }));
     koa.use(router.routes());
     koa.use(router.allowedMethods());
-    koa.use(async(ctx: Koa$Context$Impl): Promise<*> => {
-      ctx.throw(400, 'Unmatched route');
-    });
+    koa.use(v1Handlers.system.fallback(this));
     this.koa.use(koaMount('/api/v1', koa));
   }
-
 }
-
-///////////////////
-
-export default Server;

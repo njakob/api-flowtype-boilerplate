@@ -28,14 +28,14 @@ function write(d: Debugger, fn: () => any[]): void {
   }
 }
 
-function blob(fn: () => any[]): void {
+export function blob(fn: () => any[]): void {
   write(blobHandler, fn);
 }
 
-function server(fn: () => any[]): void {
+export function server(fn: () => any[]): void {
   write(serverHandler, fn);
 }
 
-function resource(fn: () => any[]): void {
+export function resource(fn: () => any[]): void {
   write(resourceHandler, fn);
 }

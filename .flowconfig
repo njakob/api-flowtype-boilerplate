@@ -9,5 +9,6 @@ interfaces/
 server/
 
 [options]
+esproposal.export_star_as=enable
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=server

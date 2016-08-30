@@ -10,6 +10,7 @@
         "transform-object-rest-spread",
         "transform-es2015-destructuring",
         "transform-es2015-modules-commonjs",
+        "transform-export-extensions",
         [ "module-alias", [
           { "src": "./server/components", "expose": "components" },
           { "src": "./server/controllers", "expose": "controllers" },
